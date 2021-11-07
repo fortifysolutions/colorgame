@@ -4,7 +4,8 @@ import time
 
 def text(score):
     f = open("guess_game_record.txt", "a")
-    f.write(score)
+    f.write(score + "-correctAnswer")
+    f.write('\n')
     f.close()
 
 
@@ -16,10 +17,11 @@ def cls():
 def rules():
     print("Guess the Position of \033[1;31mRED\033[m Color")
     time.sleep(1.5)
-    print(" Imp. Instructions:")
+    print("\n\t\tImp. Instructions:")
     print(
         "1. You have to identify the position of \033[1;31mRED\033[m Color\n"
-        "2. Time: You have \033[1;31m3\033[m seconds to identify the positions\n")
+        "2. You have \033[1;31m3\033[m seconds to identify the position\n")
+    print("\033[1;32m", time.ctime(), "\033[m")
 
 
 def countdown():
@@ -124,7 +126,8 @@ def guess():
     countdown()
     cls()
     if list.index("red") + 1 == color_position():
-        print("congratulation!!!!!, you WON")
+        time.sleep(1)
+        print("\ncongratulation!!!!!, you WON")
         score_card += 1
         text(str(score_card))
     else:
@@ -136,7 +139,7 @@ def main():
     while True:
         x = input('to continue with the Game, enter any key.... \nor\n to exit press "1" > ')
         if x == "1":
-            f = open("guess_game_record.txt","r")
+            f = open("guess_game_record.txt", "r")
             print(f.readlines())
             f.close()
             print(f"You played {play} times\n\nThank you!!!")
@@ -147,8 +150,17 @@ def main():
 
 
 start_time = time.time()
+cls()
+banner()
 rules()
 main()
 time.sleep(2)
 cls()
+f = open("guess_game_record.txt", "w")
+f.write("")
+f.close()
 print(f"\nYou spent {int(time.time() - start_time)} seconds in Game")
+print("\033[1;32m", time.ctime(), "\033[m")
+import socket
+
+print(socket.gethostbyname(socket.gethostname()))
